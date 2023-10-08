@@ -7,3 +7,6 @@ Flood events are recurrent phenomena in Pakistan, primarily driven by intense su
 The study area encompasses the regions in Pakistan most severely affected by the flood, spanning the southern provinces of Punjab, Sindh, and Balochistan, covering a total land area of 85,616.5 square kilometers. The Indus River basin, a critical drainage system, plays a pivotal role in this study area's hydrology. 
 # Results
 ![Comparison of the average depth of the study area calculated using the traditional hydrodynamics method and the average depth computed by HydroPML over a 14-day period of rainfall](https://github.com/HydroPML/FloodCast/blob/main/Figures/fig12.jpg)
+# References
+Xu, Q., Shi, Y., Bamber, J., Ouyang, C., & Zhu, X. X. (2023). A large-scale flood modeling using geometry-adaptive physics-informed neural solver and Earth observation data (No. EGU23-3276).  
+Xu, Q., Shi, Y., Bamber, J., Ouyang, C., & Zhu, X. X. (2023). Large-scale flood modeling and forecasting with FloodCast (under review).
