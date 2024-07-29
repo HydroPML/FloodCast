@@ -1,13 +1,33 @@
 # Large-scale flood modeling and forecasting with FloodCast
 Large-scale hydrodynamic models generally rely on fixed-resolution spatial grids and model parameters as well as incurring a high computational cost. This limits their ability to accurately forecast flood crests and issue time-critical hazard warnings. In this work, we build a fast, stable, accurate, resolution-invariant, and geometry-adaptive flood modeling and forecasting framework that can perform at large scales, namely FloodCast. The framework comprises two main modules: multi-satellite observation and hydrodynamic modeling. In the multi-satellite observation module, a real-time unsupervised change detection method and a rainfall processing and analysis tool are proposed to harness the full potential of multi-satellite observations in large-scale flood prediction. In the hydrodynamic modeling module, a geometry-adaptive physics-informed neural solver (GeoPINS) is introduced, benefiting from the absence of a requirement for training data in physics-informed neural networks (PINNs) and featuring a fast, accurate, and resolution-invariant architecture with Fourier neural operators. To adapt to complex river geometries, we reformulate PINNs in a geometry-adaptive space. GeoPINS demonstrates impressive performance on popular partial differential equations across regular and irregular domains. Building upon GeoPINS, we propose a sequence-to-sequence GeoPINS model to handle long-term temporal series and extensive spatial domains in large-scale flood modeling. This model employs sequence-to-sequence learning and hard-encoding of boundary conditions. Next, we establish a benchmark dataset in the 2022 Pakistan flood using a widely accepted finite difference numerical solution to assess various flood simulation methods. Finally, we validate the model in three dimensions - flood inundation range, depth, and transferability of spatiotemporal downscaling - utilizing SAR-based flood data, traditional hydrodynamic benchmarks, and concurrent optical remote sensing images. Traditional hydrodynamics and sequence-to-sequence GeoPINS exhibit exceptional agreement during high water levels, while comparative assessments with SAR-based flood depth data show that sequence-to-sequence GeoPINS outperforms traditional hydrodynamics, with smaller simulation errors. The experimental results for the 2022 Pakistan flood demonstrate that the proposed method enables high-precision, large-scale flood modeling with an average MAPE of 14.93% and an average Mean Absolute Error (MAE) of 0.0610m for 14-day water depth simulations while facilitating real-time flood hazard forecasting using reliable precipitation data.
-# Model: Sequence-to-sequence Geometry-adaptive physics-informed neural solver (PiML)
+# FloodCast
+![ Framework of flood modeling and forecasting (FloodCast) system](https://github.com/HydroPML/FloodCast/blob/main/Figures/fig1.jpg)
+FloodCast includes the multi-satellite observation and hydrodynamic modeling modules. 
+## Geometry-adaptive physics-informed neural solver (GeoPINS)
 ![Geometry-adaptive physics-informed neural solver](https://github.com/HydroPML/FloodCast/blob/main/Figures/fig2.jpg)
+## Sequence-to-sequence GeoPINS
+![Sequence-to-sequence GeoPINS for large-scale flood modeling](https://github.com/HydroPML/FloodCast/blob/main/Figures/fig4.jpg)
+For tackling large-scale temporal or spatial problems, based on the resolution-invariant feature of GeoPINS, we train GeoPINS on a lower spatio-temporal resolution and directly infer at higher resolution for flood forecast.
+
+Inspired by the sequence-to-sequence learning task, we model long-term sequences into different sequences. A marching-in-time scheme is utilized to predict different sequences. We take the prediction at T=ΔT and use this as the initial condition to make a prediction at T=2ΔT.
+
+In order to effectively train the sequence-to-sequence GeoPINS model, we apply a hard-encoding of boundary conditions to the model’s prediction at each time step.
 # Study Area: 2022 Pakistan Flood
 ![Study area](https://github.com/HydroPML/FloodCast/blob/main/Figures/fig15.jpg)
 Flood events are recurrent phenomena in Pakistan, primarily driven by intense summer monsoon rainfall and occasional tropical cyclones. In the summer monsoon season of 2022, Pakistan experienced a devastating flood event. This flood event impacted approximately one-third of Pakistan's population, resulting in the displacement of around 32 million individuals and causing the loss of 1,486 lives, including 530 children. The economic toll of this disaster has been estimated at exceeding 30 billion. Beyond the immediate consequences, the widespread destruction of agricultural fields has raised concerns of potential famine, and there is a looming threat of disease outbreaks in temporary shelters.
 The study area encompasses the regions in Pakistan most severely affected by the flood, spanning the southern provinces of Punjab, Sindh, and Balochistan, covering a total land area of 85,616.5 square kilometers. The Indus River basin, a critical drainage system, plays a pivotal role in this study area's hydrology. 
-# Results
-**Comparison of the average depth of the study area calculated using the traditional hydrodynamics method and the average depth computed by HydroPML over a 14-day period of rainfall**  
+# Results of multi-satellite observations
+## Results of unsupervised change detection
+![Validation of real-time UCD by comparing flood maps generated by different methods. The red box represents the focus regions](https://github.com/HydroPML/FloodCast/blob/main/Figures/fig7.jpg)
+Our proposed unsupervised change detection (UCD) method achieves high detection accuracy and finer results due to the adaptive thresholding.
+## Real-time rainfall analysis
+![Rainfall analysis during the 2022 flood in Pakistan](https://github.com/HydroPML/FloodCast/blob/main/Figures/sm_fig4.jpg)
+Based on the real-time rainfall threshold analysis, it is discernible that the rainfall exceeded the designated extreme precipitation threshold between August 18 and August 30. Thus, accurate flood prediction with a high spatiotemporal resolution is essential for the high frequency of extreme rainfall periods.
+# Results of sequence-to-sequence GeoPINS
+## Validation of flood inundation extents
+![ Flood extent results on 30 August 2022](https://github.com/HydroPML/FloodCast/blob/main/Figures/fig10.jpg)
+The visualization results indicate that traditional hydrodynamics-based flood extents align better with SAR-based results in the peripheral regions, while sequence-to-sequence GeoPINS-based flood extents excel in detail accuracy within inundated areas. Both methods demonstrate excellent agreement under high water levels.
+## Comparison of the average depth of the study area calculated using the traditional hydrodynamics method and the average depth computed by HydroPML over a 14-day period of rainfall
 ![Comparison of the average depth of the study area calculated using the traditional hydrodynamics method and the average depth computed by HydroPML over a 14-day period of rainfall](https://github.com/HydroPML/FloodCast/blob/main/Figures/fig12.jpg)
 # References
 Xu Q, Shi Y, Bamber JL, Ouyang C, Zhu XX. Large-scale flood modeling and forecasting with FloodCast. Water Research. 2024 Jul 26:122162.
