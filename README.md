@@ -27,7 +27,8 @@ Based on the real-time rainfall threshold analysis, it is discernible that the r
 ## Validation of flood inundation extents
 ![ Flood extent results on 30 August 2022](https://github.com/HydroPML/FloodCast/blob/main/Figures/fig10.jpg)
 The visualization results indicate that traditional hydrodynamics-based flood extents align better with SAR-based results in the peripheral regions, while sequence-to-sequence GeoPINS-based flood extents excel in detail accuracy within inundated areas. Both methods demonstrate excellent agreement under high water levels.
-## Comparison of the average depth of the study area calculated using the traditional hydrodynamics method and the average depth computed by HydroPML over a 14-day period of rainfall
+## Validation of flood depths
 ![Comparison of the average depth of the study area calculated using the traditional hydrodynamics method and the average depth computed by HydroPML over a 14-day period of rainfall](https://github.com/HydroPML/FloodCast/blob/main/Figures/fig122.jpg)
+Comparison of the average depth of the study area calculated using the traditional hydrodynamics method and the average depth computed by HydroPML over a 14-day period of rainfall. The general trend between the traditional hydrodynamic modeling and sequence-to- sequence GeoPINS aligns consistently.
 # References
 Xu Q, Shi Y, Bamber JL, Ouyang C, Zhu XX. Large-scale flood modeling and forecasting with FloodCast. Water Research. 2024 Jul 26:122162.
