@@ -79,7 +79,7 @@ function otsu(image) {
         bestEffort: true,
         // tileScale:16
     });
-    print("频数分布", histogram)
+    print("frequency distribution", histogram)
     return otsu1(histogram.get(histogram.keys().get(0)));
 }
 
